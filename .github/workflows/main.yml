@@ -17,16 +17,14 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   build:
-  #deend du job Explore-GitHub-Actions
-    needs: Explore-GitHub-Actions
-    runs-on: ubuntu-latest
-    steps:
+  needs: Explore-GitHub-Actions
+  runs-on: ubuntu-latest
 
-      - uses: actions/checkout@v3
+  steps:
+    - name: Récupérer le code
+      uses: actions/checkout@v4
 
-      - name: Build the Docker image
-        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-
-       -name: Build the Docker image
-        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-        
+    - name: Vérifier le système
+      run: |
+        echo "🎉 Le job a été déclenché par un événement ${{ github.event_name }}"
+        echo "🐧 Le job s'exécute sur un serveur ${{ runner.os }}"
